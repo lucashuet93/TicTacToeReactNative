@@ -11,13 +11,12 @@ class CheckerBoard extends Component {
   constructor(p) {
     super(p);
     this.state = {
-      gameboard: [],
-      winner: null
+      gameboard: []
     }
   }
-  initializeGameboard(){
+  initializeGameboard() {
     let board = [];
-    for(let i = 0; i < 9; i++){
+    for (let i = 0; i < 9; i++) {
       board.push(
         {
           index: i,
@@ -28,9 +27,39 @@ class CheckerBoard extends Component {
       gameboard: board
     })
   }
-  endGame() {
+  determineWinner(player) {
+    let board = this.state.gameboard;
+    let currentTiles = board.map(tile => {
+      if (tile.user === player) {
+        board.push(tile.index);
+      }
+    });
+    let zero = board.includes(0);
+    let one = board.includes(1);
+    let two = board.includes(2);
+    let three = board.includes(3);
+    let four = board.includes(4);
+    let five = board.includes(5);
+    let six = board.includes(6);
+    let seven = board.includes(7);
+    let eight = board.includes(8);
+    if ((zero && three && six) ||
+      (one && four && seven) ||
+      (two && five && eigth) ||
+      (zero && one && two) ||
+      (three && four && five) ||
+      (six && seven && eight) ||
+      (zero && four && eight) ||
+      (two && four && six)) {
+      this.endGame(player)
+    }
+  }
+  endGame(player) {
     //need to send either "P1" or "P2" to this method
     this.props.endGameWithWinner();
+    this.setState({
+      winner: player,
+    })
   }
   render() {
     return (
