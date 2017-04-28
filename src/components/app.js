@@ -50,7 +50,7 @@ class App extends React.Component {
                 <Header heading="Tic Tac Toe" />
                 {this.renderMessage()}
                 <View style={styles.container}>
-                    <CheckerBoard endGameWithWinner={this.isFinished.bind(this)}/>
+                    <CheckerBoard gameOver={this.state.finished} endGameWithWinner={this.isFinished.bind(this)}/>
                 </View>
                 <Scoreboard pOneScore={this.state.pOneScore} pTwoScore={this.state.pTwoScore}/>
             </View>

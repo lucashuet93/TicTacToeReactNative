@@ -11,7 +11,7 @@ class BoardTile extends Component {
         super(p);
     }
     onSelect() {
-        if (this.props.player == null) {
+        if (this.props.player == null && this.props.gameOver == false) {
             this.props.tileSelected(this.props.index, this.props.turn);
         }
     }
