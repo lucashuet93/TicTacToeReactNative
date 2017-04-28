@@ -11,7 +11,8 @@ class CheckerBoard extends Component {
   constructor(p) {
     super(p);
     this.state = {
-      gameboard: []
+      gameboard: [],
+      turn: 'P1'
     }
   }
   componentWillMount(){
@@ -65,26 +66,29 @@ class CheckerBoard extends Component {
     })
   }
   tileSelected(index, player){
-
+    let newPlayer = this.state.turn == 'P1' ? 'P2' : 'P1';
+    console.log(index, player);
+    this.setState({
+      turn: player
+    })
   }
   render() {
-    console.log(this.state.gameboard)
     return (
       <View style={styles.container}>
         <View style={styles.row}>
-          <BoardTile index={0} player={this.state.gameboard[0].user} tileSelected={this.tileSelected.bind(this)}/>
-          <BoardTile index={1} player={this.state.gameboard[1].user} tileSelected={this.tileSelected.bind(this)}/>
-          <BoardTile index={2} player={this.state.gameboard[2].user} tileSelected={this.tileSelected.bind(this)}/>
+          <BoardTile index={0} turn={this.state.turn} player={this.state.gameboard[0].user} tileSelected={this.tileSelected.bind(this)}/>
+          <BoardTile index={1} turn={this.state.turn} player={this.state.gameboard[1].user} tileSelected={this.tileSelected.bind(this)}/>
+          <BoardTile index={2} turn={this.state.turn} player={this.state.gameboard[2].user} tileSelected={this.tileSelected.bind(this)}/>
         </View>
         <View style={styles.row}>
-          <BoardTile index={3} player={this.state.gameboard[3].user} tileSelected={this.tileSelected.bind(this)}/>
-          <BoardTile index={4} player={this.state.gameboard[4].user} tileSelected={this.tileSelected.bind(this)}/>
-          <BoardTile index={5} player={this.state.gameboard[5].user} tileSelected={this.tileSelected.bind(this)}/>
+          <BoardTile index={3} turn={this.state.turn} player={this.state.gameboard[3].user} tileSelected={this.tileSelected.bind(this)}/>
+          <BoardTile index={4} turn={this.state.turn} player={this.state.gameboard[4].user} tileSelected={this.tileSelected.bind(this)}/>
+          <BoardTile index={5} turn={this.state.turn} player={this.state.gameboard[5].user} tileSelected={this.tileSelected.bind(this)}/>
         </View>
         <View style={styles.row}>
-          <BoardTile index={6} player={this.state.gameboard[6].user} tileSelected={this.tileSelected.bind(this)}/>
-          <BoardTile index={7} player={this.state.gameboard[7].user} tileSelected={this.tileSelected.bind(this)}/>
-          <BoardTile index={8} player={this.state.gameboard[8].user} tileSelected={this.tileSelected.bind(this)}/>
+          <BoardTile index={6} turn={this.state.turn} player={this.state.gameboard[6].user} tileSelected={this.tileSelected.bind(this)}/>
+          <BoardTile index={7} turn={this.state.turn} player={this.state.gameboard[7].user} tileSelected={this.tileSelected.bind(this)}/>
+          <BoardTile index={8} turn={this.state.turn} player={this.state.gameboard[8].user} tileSelected={this.tileSelected.bind(this)}/>
         </View>
       </View>
     );
