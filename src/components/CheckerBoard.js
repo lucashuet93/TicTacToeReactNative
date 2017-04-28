@@ -6,13 +6,16 @@ import {
   Text,
   View
 } from 'react-native';
-
+import BoardTile from './BoardTile';
 class CheckerBoard extends Component {
   constructor(p) {
     super(p);
     this.state = {
       gameboard: []
     }
+  }
+  componentWillMount(){
+    this.initializeGameboard();
   }
   initializeGameboard() {
     let board = [];
@@ -61,23 +64,27 @@ class CheckerBoard extends Component {
       winner: player,
     })
   }
+  tileSelected(index, player){
+
+  }
   render() {
+    console.log(this.state.gameboard)
     return (
       <View style={styles.container}>
         <View style={styles.row}>
-          <View style={styles.blue} />
-          <View style={styles.red} />
-          <View style={styles.yellow} />
+          <BoardTile index={0} player={this.state.gameboard[0].user} tileSelected={this.tileSelected.bind(this)}/>
+          <BoardTile index={1} player={this.state.gameboard[1].user} tileSelected={this.tileSelected.bind(this)}/>
+          <BoardTile index={2} player={this.state.gameboard[2].user} tileSelected={this.tileSelected.bind(this)}/>
         </View>
         <View style={styles.row}>
-          <View style={styles.red} />
-          <View style={styles.yellow} />
-          <View style={styles.blue} />
+          <BoardTile index={3} player={this.state.gameboard[3].user} tileSelected={this.tileSelected.bind(this)}/>
+          <BoardTile index={4} player={this.state.gameboard[4].user} tileSelected={this.tileSelected.bind(this)}/>
+          <BoardTile index={5} player={this.state.gameboard[5].user} tileSelected={this.tileSelected.bind(this)}/>
         </View>
         <View style={styles.row}>
-          <View style={styles.yellow} />
-          <View style={styles.blue} />
-          <View style={styles.red} />
+          <BoardTile index={6} player={this.state.gameboard[6].user} tileSelected={this.tileSelected.bind(this)}/>
+          <BoardTile index={7} player={this.state.gameboard[7].user} tileSelected={this.tileSelected.bind(this)}/>
+          <BoardTile index={8} player={this.state.gameboard[8].user} tileSelected={this.tileSelected.bind(this)}/>
         </View>
       </View>
     );

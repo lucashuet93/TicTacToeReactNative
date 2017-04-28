@@ -10,16 +10,16 @@ class BoardTile extends Component {
     super(p);
   }
   onSelect(){
-      this.props.tileSelected(this.props.index);
+      this.props.tileSelected(this.props.index, this.props.player);
   }
   render() {
-    let colorStyle = this.props.player == 'P1' ? styles.red : styles.blue;
+    let colorStyle = this.props.player ? (this.props.player == 'P1' ? styles.red : styles.blue) : styles.gray;
     return (
           <View style={colorStyle} />
     );
   }
 }
-export default CheckerBoard;
+export default BoardTile;
 const styles = StyleSheet.create({
   red: {
     backgroundColor: '#ff704d',
@@ -29,6 +29,12 @@ const styles = StyleSheet.create({
   },
   blue: {
     backgroundColor: '#4d94ff',
+    borderWidth: 1,
+    borderColor: 'white',
+    flex: 1
+  },
+  gray: {
+    backgroundColor: 'gray',
     borderWidth: 1,
     borderColor: 'white',
     flex: 1
