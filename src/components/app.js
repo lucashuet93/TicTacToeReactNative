@@ -13,6 +13,9 @@ class App extends React.Component {
             pTwoScore: 0
         }
     }
+    componentWillMount(){
+        this.initializeBoard.bind(this);
+    }
     initializeBoard() {
         this.setState({
             finished: false,
@@ -42,7 +45,7 @@ class App extends React.Component {
             <View style={{ flex: 1 }}>
                 <Header heading="Tic Tac Toe" />
                 <View style={styles.container}>
-                    <CheckerBoard />
+                    <CheckerBoard endGameWithWinner={this.isFinished.bind(this)}/>
                 </View>
                 <Scoreboard pOneScore={this.state.pOneScore} pTwoScore={this.state.pTwoScore}/>
             </View>

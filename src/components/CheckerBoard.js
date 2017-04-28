@@ -8,6 +8,10 @@ import {
 } from 'react-native';
 
 class CheckerBoard extends Component {
+  endGame(){
+    //need to send either "P1" or "P2" to this method
+    this.props.endGameWithWinner();
+  }
   render() {
     return (
       <View style={styles.container}>
