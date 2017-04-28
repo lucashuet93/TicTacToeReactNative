@@ -32,8 +32,9 @@ class CheckerBoard extends Component {
     })
   }
   determineWinner(player) {
-    let board = this.state.gameboard;
-    let currentTiles = board.map(tile => {
+    let current = this.state.gameboard;
+    let board = [];
+    let currentTiles = current.map(tile => {
       if (tile.user === player) {
         board.push(tile.index);
       }
@@ -59,6 +60,7 @@ class CheckerBoard extends Component {
     }
   }
   endGame(player) {
+    console.log(player + ' WON')
     //need to send either "P1" or "P2" to this method
     this.props.endGameWithWinner();
     this.setState({
@@ -72,7 +74,8 @@ class CheckerBoard extends Component {
     this.setState({
       turn: newPlayer,
       gameboard: board
-    })
+    });
+    this.determineWinner(player);
   }
   render() {
     return (
