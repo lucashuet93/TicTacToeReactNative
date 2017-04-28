@@ -8,7 +8,27 @@ import {
 } from 'react-native';
 
 class CheckerBoard extends Component {
-  endGame(){
+  constructor(p) {
+    super(p);
+    this.state = {
+      gameboard: [],
+      winner: null
+    }
+  }
+  initializeGameboard(){
+    let board = [];
+    for(let i = 0; i < 9; i++){
+      board.push(
+        {
+          index: i,
+          user: null
+        })
+    };
+    this.setState({
+      gameboard: board
+    })
+  }
+  endGame() {
     //need to send either "P1" or "P2" to this method
     this.props.endGameWithWinner();
   }
