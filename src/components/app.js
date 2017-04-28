@@ -40,10 +40,14 @@ class App extends React.Component {
 
         }
     }
+    renderMessage(){
+        return this.props.finished ? <View></View> : <View />
+    }
     render() {
         return (
             <View style={{ flex: 1 }}>
                 <Header heading="Tic Tac Toe" />
+                {this.renderMessage}
                 <View style={styles.container}>
                     <CheckerBoard endGameWithWinner={this.isFinished.bind(this)}/>
                 </View>
