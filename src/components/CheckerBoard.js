@@ -40,6 +40,12 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    shadowColor: 'black',
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.5,
   },
   red: {
     backgroundColor: '#ff704d',
