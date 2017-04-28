@@ -5,7 +5,7 @@ const Scoreboard = (props) => {
     return (
         <View style={styles.viewStyle}>
             <Text style={styles.playerStyle}>P1</Text>
-            <Text style={styles.scoreStyle}>{props.oneScore} - {props.twoScore}</Text>
+            <Text style={styles.scoreStyle}>{props.pOneScore} - {props.pTwoScore}</Text>
             <Text style={styles.playerStyle}>P2</Text>
         </View>
     )
