@@ -60,9 +60,8 @@ class CheckerBoard extends Component {
     }
   }
   endGame(player) {
-    console.log(player + ' WON')
     //need to send either "P1" or "P2" to this method
-    this.props.endGameWithWinner();
+    this.props.endGameWithWinner(player);
     this.setState({
       winner: player,
     })
