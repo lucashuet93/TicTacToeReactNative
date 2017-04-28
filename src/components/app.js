@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import CheckerBoard from './CheckerBoard';
 import Header from './Header';
+import Scoreboard from './Scoreboard';
 class App extends React.Component {
     render() {
         return (
@@ -10,6 +11,7 @@ class App extends React.Component {
                 <View style={styles.container}>
                     <CheckerBoard />
                 </View>
+                <Scoreboard />
             </View>
         )
     }
