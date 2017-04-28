@@ -66,10 +66,12 @@ class CheckerBoard extends Component {
     })
   }
   tileSelected(index, player){
-    let newPlayer = this.state.turn == 'P1' ? 'P2' : 'P1';
-    console.log(index, player);
+    let newPlayer = this.state.turn === 'P1' ? 'P2' : 'P1';
+    let board = this.state.gameboard;
+    board[index].user = player;
     this.setState({
-      turn: player
+      turn: newPlayer,
+      gameboard: board
     })
   }
   render() {

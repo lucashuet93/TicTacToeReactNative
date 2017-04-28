@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import {
     StyleSheet,
     View,
-    TouchableHighlight
+    TouchableOpacity
 } from 'react-native';
 
 class BoardTile extends Component {
@@ -11,14 +11,16 @@ class BoardTile extends Component {
         super(p);
     }
     onSelect() {
-        this.props.tileSelected(this.props.index, this.props.turn);
+        if (this.props.player == null) {
+            this.props.tileSelected(this.props.index, this.props.turn);
+        }
     }
     render() {
         let colorStyle = this.props.player ? (this.props.player == 'P1' ? styles.red : styles.blue) : styles.gray;
         return (
-            <TouchableHighlight onPress={this.onSelect.bind(this)}>
-                <View style={colorStyle} />
-            </TouchableHighlight>
+            <TouchableOpacity style={colorStyle} onPress={this.onSelect.bind(this)}>
+                <View />
+            </TouchableOpacity>
         );
     }
 }
