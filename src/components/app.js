@@ -3,6 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import CheckerBoard from './CheckerBoard';
 import Header from './Header';
 import Scoreboard from './Scoreboard';
+import VictoryMessage from './VictoryMessage'
 class App extends React.Component {
     constructor() {
         super();
@@ -41,13 +42,13 @@ class App extends React.Component {
         }
     }
     renderMessage(){
-        return this.props.finished ? <View></View> : <View />
+        return this.state.finished === true ? <VictoryMessage message={this.state.message}/> : null;
     }
     render() {
         return (
             <View style={{ flex: 1 }}>
                 <Header heading="Tic Tac Toe" />
-                {this.renderMessage}
+                {this.renderMessage()}
                 <View style={styles.container}>
                     <CheckerBoard endGameWithWinner={this.isFinished.bind(this)}/>
                 </View>
