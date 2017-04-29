@@ -11,7 +11,8 @@ class App extends React.Component {
             finished: false,
             message: null,
             pOneScore: 0,
-            pTwoScore: 0
+            pTwoScore: 0,
+            reInitialize: false
         }
     }
     componentWillMount(){
@@ -20,7 +21,13 @@ class App extends React.Component {
     initializeBoard() {
         this.setState({
             finished: false,
-            message: null
+            message: null,
+            reInitialize: true
+        })
+    }
+    revert(){
+        this.setState({
+            reInitialize: false
         })
     }
     isFinished(player) {
@@ -28,29 +35,25 @@ class App extends React.Component {
             let score = this.state.pOneScore + 1;
             this.setState({
                 finished: true,
-                message: `${player} wins!`,
+                message: `${player} WINS!`,
                 pOneScore: score
             })
         } else {
             let score = this.state.pTwoScore + 1;
             this.setState({
                 finished: true,
-                message: `${player} wins!`,
+                message: `${player} WINS!`,
                 pTwoScore: score
             })
-
         }
-    }
-    renderMessage(){
-        return this.state.finished === true ? <VictoryMessage message={this.state.message}/> : null;
     }
     render() {
         return (
             <View style={{ flex: 1 }}>
                 <Header heading="Tic Tac Toe" />
-                {this.renderMessage()}
+                <VictoryMessage reInitialize={this.initializeBoard.bind(this)} visible={this.state.finished} message={this.state.message}/>
                 <View style={styles.container}>
-                    <CheckerBoard gameOver={this.state.finished} endGameWithWinner={this.isFinished.bind(this)}/>
+                    <CheckerBoard revert={this.revert.bind(this)} reInitialize={this.state.reInitialize} gameOver={this.state.finished} endGameWithWinner={this.isFinished.bind(this)}/>
                 </View>
                 <Scoreboard pOneScore={this.state.pOneScore} pTwoScore={this.state.pTwoScore}/>
             </View>

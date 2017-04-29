@@ -18,6 +18,12 @@ class CheckerBoard extends Component {
   componentWillMount(){
     this.initializeGameboard();
   }
+  componentWillReceiveProps(nextProps){
+    if(nextProps.reInitialize === true){
+      this.initializeGameboard();
+      this.props.revert();
+    }
+  }
   initializeGameboard() {
     let board = [];
     for (let i = 0; i < 9; i++) {
@@ -50,7 +56,7 @@ class CheckerBoard extends Component {
     let eight = board.includes(8);
     if ((zero && three && six) ||
       (one && four && seven) ||
-      (two && five && eigth) ||
+      (two && five && eight) ||
       (zero && one && two) ||
       (three && four && five) ||
       (six && seven && eight) ||
@@ -62,9 +68,6 @@ class CheckerBoard extends Component {
   endGame(player) {
     //need to send either "P1" or "P2" to this method
     this.props.endGameWithWinner(player);
-    this.setState({
-      winner: player,
-    })
   }
   tileSelected(index, player){
     let newPlayer = this.state.turn === 'P1' ? 'P2' : 'P1';
