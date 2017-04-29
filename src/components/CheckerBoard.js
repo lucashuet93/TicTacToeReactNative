@@ -12,14 +12,15 @@ class CheckerBoard extends Component {
     super(p);
     this.state = {
       gameboard: [],
-      turn: 'P1'
+      turn: 'P1',
+      turnCount: 0
     }
   }
-  componentWillMount(){
+  componentWillMount() {
     this.initializeGameboard();
   }
-  componentWillReceiveProps(nextProps){
-    if(nextProps.reInitialize === true){
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.reInitialize === true) {
       this.initializeGameboard();
       this.props.revert();
     }
@@ -54,6 +55,7 @@ class CheckerBoard extends Component {
     let six = board.includes(6);
     let seven = board.includes(7);
     let eight = board.includes(8);
+    let winner = false;
     if ((zero && three && six) ||
       (one && four && seven) ||
       (two && five && eight) ||
@@ -62,14 +64,27 @@ class CheckerBoard extends Component {
       (six && seven && eight) ||
       (zero && four && eight) ||
       (two && four && six)) {
+      winner = true;
+    }
+    let count = this.state.turnCount + 1;
+    if (winner == true) {
       this.endGame(player)
+      this.setState({ turnCount: 0 })
+    } else {
+      if (count == 9) {
+        this.endGame('tie')
+        this.setState({ turnCount: 0 })
+      } else {
+        this.setState({ turnCount: count })
+      }
     }
   }
   endGame(player) {
     //need to send either "P1" or "P2" to this method
     this.props.endGameWithWinner(player);
   }
-  tileSelected(index, player){
+  tileSelected(index, player) {
+
     let newPlayer = this.state.turn === 'P1' ? 'P2' : 'P1';
     let board = this.state.gameboard;
     board[index].user = player;
@@ -83,19 +98,19 @@ class CheckerBoard extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.row}>
-          <BoardTile index={0} gameOver={this.props.gameOver} turn={this.state.turn} player={this.state.gameboard[0].user} tileSelected={this.tileSelected.bind(this)}/>
-          <BoardTile index={1} gameOver={this.props.gameOver} turn={this.state.turn} player={this.state.gameboard[1].user} tileSelected={this.tileSelected.bind(this)}/>
-          <BoardTile index={2} gameOver={this.props.gameOver} turn={this.state.turn} player={this.state.gameboard[2].user} tileSelected={this.tileSelected.bind(this)}/>
+          <BoardTile index={0} gameOver={this.props.gameOver} turn={this.state.turn} player={this.state.gameboard[0].user} tileSelected={this.tileSelected.bind(this)} />
+          <BoardTile index={1} gameOver={this.props.gameOver} turn={this.state.turn} player={this.state.gameboard[1].user} tileSelected={this.tileSelected.bind(this)} />
+          <BoardTile index={2} gameOver={this.props.gameOver} turn={this.state.turn} player={this.state.gameboard[2].user} tileSelected={this.tileSelected.bind(this)} />
         </View>
         <View style={styles.row}>
-          <BoardTile index={3} gameOver={this.props.gameOver} turn={this.state.turn} player={this.state.gameboard[3].user} tileSelected={this.tileSelected.bind(this)}/>
-          <BoardTile index={4} gameOver={this.props.gameOver} turn={this.state.turn} player={this.state.gameboard[4].user} tileSelected={this.tileSelected.bind(this)}/>
-          <BoardTile index={5} gameOver={this.props.gameOver} turn={this.state.turn} player={this.state.gameboard[5].user} tileSelected={this.tileSelected.bind(this)}/>
+          <BoardTile index={3} gameOver={this.props.gameOver} turn={this.state.turn} player={this.state.gameboard[3].user} tileSelected={this.tileSelected.bind(this)} />
+          <BoardTile index={4} gameOver={this.props.gameOver} turn={this.state.turn} player={this.state.gameboard[4].user} tileSelected={this.tileSelected.bind(this)} />
+          <BoardTile index={5} gameOver={this.props.gameOver} turn={this.state.turn} player={this.state.gameboard[5].user} tileSelected={this.tileSelected.bind(this)} />
         </View>
         <View style={styles.row}>
-          <BoardTile index={6} gameOver={this.props.gameOver} turn={this.state.turn} player={this.state.gameboard[6].user} tileSelected={this.tileSelected.bind(this)}/>
-          <BoardTile index={7} gameOver={this.props.gameOver} turn={this.state.turn} player={this.state.gameboard[7].user} tileSelected={this.tileSelected.bind(this)}/>
-          <BoardTile index={8} gameOver={this.props.gameOver} turn={this.state.turn} player={this.state.gameboard[8].user} tileSelected={this.tileSelected.bind(this)}/>
+          <BoardTile index={6} gameOver={this.props.gameOver} turn={this.state.turn} player={this.state.gameboard[6].user} tileSelected={this.tileSelected.bind(this)} />
+          <BoardTile index={7} gameOver={this.props.gameOver} turn={this.state.turn} player={this.state.gameboard[7].user} tileSelected={this.tileSelected.bind(this)} />
+          <BoardTile index={8} gameOver={this.props.gameOver} turn={this.state.turn} player={this.state.gameboard[8].user} tileSelected={this.tileSelected.bind(this)} />
         </View>
       </View>
     );

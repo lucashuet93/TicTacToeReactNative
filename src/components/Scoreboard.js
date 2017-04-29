@@ -14,24 +14,24 @@ export default Scoreboard;
 const styles = StyleSheet.create({
     playerStyle: {
         fontSize: 20,
-        color: 'black'
+        color: 'white'
     },
     scoreStyle: {
         fontSize: 25,
-        color: 'red'
+        color: 'white'
     },
     viewStyle: {
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
-        backgroundColor: '#f8f8f8',
+        backgroundColor: '#FA4343',
         height: 60,
         shadowColor: 'black',
         shadowOffset: {
             width: 0,
             height: 2
         },
-        shadowOpacity: 0.5,
+        shadowOpacity: 1,
         elevation: 2,
         position: 'relative'
     }

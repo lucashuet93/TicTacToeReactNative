@@ -49,7 +49,8 @@ export default VictoryMessage;
 const styles = StyleSheet.create({
     messageStyle: {
         textAlign: 'center',
-        fontSize: 20
+        fontSize: 20,
+        color:"white"
     },
     messageContainerStyle:{
         justifyContent: "center",
@@ -60,9 +61,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignSelf: 'stretch',
         backgroundColor: '#fff',
-        borderWidth: 1,
         justifyContent: "center",
-        borderColor: '#007aff',
         marginLeft: 5,
         marginRight: 5,
         alignItems: 'center',
@@ -74,11 +73,11 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         height: 100,
         padding: 5,
-        backgroundColor: '#fff',
+        backgroundColor: '#FA4343',
         justifyContent: 'flex-start',
         borderColor: '#ddd',
         position: 'relative',
-        shadowColor: 'black',
+        shadowColor: 'white',
         shadowOffset: {
             width: 0,
             height: 2
@@ -95,6 +94,6 @@ const styles = StyleSheet.create({
     buttonTextStyle:{
         fontSize: 17,
         fontWeight: "600",
-        color: '#007aff',
+        color:"#FA4343"
     }
 });

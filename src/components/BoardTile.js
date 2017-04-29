@@ -27,16 +27,28 @@ class BoardTile extends Component {
 export default BoardTile;
 const styles = StyleSheet.create({
     red: {
-        backgroundColor: '#ff704d',
+        backgroundColor: '#F9C90A',
         borderWidth: 1,
         borderColor: 'white',
-        flex: 1
+        flex: 1,
+        shadowColor: 'black',
+        shadowOffset: {
+            width: 1,
+            height: 1
+        },
+        shadowOpacity: 0.5,
     },
     blue: {
         backgroundColor: '#4d94ff',
         borderWidth: 1,
         borderColor: 'white',
-        flex: 1
+        flex: 1,
+        shadowColor: 'black',
+        shadowOffset: {
+            width: 1,
+            height: 1
+        },
+        shadowOpacity: 0.5,
     },
     gray: {
         backgroundColor: 'gray',

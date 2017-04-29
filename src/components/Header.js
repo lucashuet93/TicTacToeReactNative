@@ -12,11 +12,13 @@ export default Header;
 const styles = StyleSheet.create({
     textStyle: {
         fontSize: 20,
+        color: "white",
+        fontWeight:"bold"
     },
     viewStyle: {
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#f8f8f8',
+        backgroundColor: '#FA4343',
         height: 60,
         paddingTop: 15,
         shadowColor: 'black',

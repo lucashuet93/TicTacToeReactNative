@@ -15,7 +15,7 @@ class App extends React.Component {
             reInitialize: false
         }
     }
-    componentWillMount(){
+    componentWillMount() {
         this.initializeBoard.bind(this);
     }
     initializeBoard() {
@@ -25,7 +25,7 @@ class App extends React.Component {
             reInitialize: true
         })
     }
-    revert(){
+    revert() {
         this.setState({
             reInitialize: false
         })
@@ -38,24 +38,30 @@ class App extends React.Component {
                 message: `${player} WINS!`,
                 pOneScore: score
             })
-        } else {
+        } else if (player == 'P2') {
             let score = this.state.pTwoScore + 1;
             this.setState({
                 finished: true,
                 message: `${player} WINS!`,
                 pTwoScore: score
             })
+        } else {
+            this.setState({
+                finished: true,
+                message: `TIE!`,
+            })
+
         }
     }
     render() {
         return (
             <View style={{ flex: 1 }}>
                 <Header heading="Tic Tac Toe" />
-                <VictoryMessage reInitialize={this.initializeBoard.bind(this)} visible={this.state.finished} message={this.state.message}/>
+                <VictoryMessage reInitialize={this.initializeBoard.bind(this)} visible={this.state.finished} message={this.state.message} />
                 <View style={styles.container}>
-                    <CheckerBoard revert={this.revert.bind(this)} reInitialize={this.state.reInitialize} gameOver={this.state.finished} endGameWithWinner={this.isFinished.bind(this)}/>
+                    <CheckerBoard revert={this.revert.bind(this)} reInitialize={this.state.reInitialize} gameOver={this.state.finished} endGameWithWinner={this.isFinished.bind(this)} />
                 </View>
-                <Scoreboard pOneScore={this.state.pOneScore} pTwoScore={this.state.pTwoScore}/>
+                <Scoreboard pOneScore={this.state.pOneScore} pTwoScore={this.state.pTwoScore} />
             </View>
         )
     }
